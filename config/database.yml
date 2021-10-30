@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: kansai-lovers
+  password: password
+  pool: 5
+
+development:
+  <<: *default
+  database: kansai-lovers_db_development
+
+test:
+  <<: *default
+  database: kansai-lovers_db_test
+
+production:
+  <<: *default
+  database: kansai-lovers_db_production
+  username: app
+  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
+
+
