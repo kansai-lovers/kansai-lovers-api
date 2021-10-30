@@ -5,7 +5,7 @@ class HellosController < ApplicationController
   end
 
   def show
-    response = {value: params[:user_name]}
+    response = {value: params[:user_name], test: "test"}
     render json: response
   end
 end
