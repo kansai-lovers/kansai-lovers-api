@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_30_113947) do
+ActiveRecord::Schema.define(version: 2021_11_05_190658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "github_accounts", force: :cascade do |t|
+    t.bigint "members_id", null: false
+    t.string "name", null: false
+    t.text "url", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["members_id"], name: "index_github_accounts_on_members_id"
+  end
 
   create_table "hellos", force: :cascade do |t|
     t.string "title"
@@ -21,4 +30,47 @@ ActiveRecord::Schema.define(version: 2021_10_30_113947) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "members", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "total_good_count", default: 0, null: false
+    t.integer "total_bad_count", default: 0, null: false
+    t.integer "total_laugh_count", default: 0, null: false
+    t.integer "total_hooray_count", default: 0, null: false
+    t.integer "total_confuse_count", default: 0, null: false
+    t.integer "total_heart_count", default: 0, null: false
+    t.integer "total_rocket_count", default: 0, null: false
+    t.integer "total_eyes_count", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "members_id", null: false
+    t.bigint "repositories_id", null: false
+    t.string "text", null: false
+    t.string "url", null: false
+    t.integer "good_count", default: 0, null: false
+    t.integer "bad_count", default: 0, null: false
+    t.integer "laugh_count", default: 0, null: false
+    t.integer "hooray_count", default: 0, null: false
+    t.integer "confuse_count", default: 0, null: false
+    t.integer "heart_count", default: 0, null: false
+    t.integer "rocket_count", default: 0, null: false
+    t.integer "eyes_count", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["members_id"], name: "index_messages_on_members_id"
+    t.index ["repositories_id"], name: "index_messages_on_repositories_id"
+  end
+
+  create_table "repositories", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "owner_name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "github_accounts", "members", column: "members_id"
+  add_foreign_key "messages", "members", column: "members_id"
+  add_foreign_key "messages", "repositories", column: "repositories_id"
 end
