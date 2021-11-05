@@ -24,14 +24,11 @@ ActiveRecord::Schema.define(version: 2021_11_05_190658) do
     t.index ["members_id"], name: "index_github_accounts_on_members_id"
   end
 
-  create_table "hellos", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "members", force: :cascade do |t|
     t.string "name", null: false
+    t.string "role"
+    t.string "join_date"
+    t.string "status"
     t.integer "total_good_count", default: 0, null: false
     t.integer "total_bad_count", default: 0, null: false
     t.integer "total_laugh_count", default: 0, null: false
@@ -47,8 +44,9 @@ ActiveRecord::Schema.define(version: 2021_11_05_190658) do
   create_table "messages", force: :cascade do |t|
     t.bigint "members_id", null: false
     t.bigint "repositories_id", null: false
-    t.string "text", null: false
-    t.string "url", null: false
+    t.text "text", null: false
+    t.text "url", null: false
+    t.datetime "join_day", null: false
     t.integer "good_count", default: 0, null: false
     t.integer "bad_count", default: 0, null: false
     t.integer "laugh_count", default: 0, null: false

@@ -3,8 +3,9 @@ class CreateMessages < ActiveRecord::Migration[6.1]
     create_table :messages do |t|
       t.references :members, null: false, foreign_key: true
       t.references :repositories, null: false, foreign_key: true
-      t.string :text , null: false
-      t.string :url , null: false
+      t.text :text , null: false
+      t.text :url , null: false
+      t.datetime :join_day , null: false
       t.integer :good_count , null: false, default: 0
       t.integer :bad_count , null: false, default: 0
       t.integer :laugh_count , null: false, default: 0

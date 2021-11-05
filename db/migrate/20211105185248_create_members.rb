@@ -2,6 +2,9 @@ class CreateMembers < ActiveRecord::Migration[6.1]
   def change
     create_table :members do |t|
       t.string :name , null: false
+      t.string :role , null: true
+      t.string :join_date , null: true
+      t.string :status , null: true
       t.integer :total_good_count , null: false, default: 0
       t.integer :total_bad_count , null: false, default: 0
       t.integer :total_laugh_count , null: false, default: 0
