@@ -10,19 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_05_190658) do
+ActiveRecord::Schema.define(version: 2021_11_06_203554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "github_accounts", force: :cascade do |t|
-    t.bigint "members_id", null: false
-    t.string "name", null: false
-    t.text "url", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["members_id"], name: "index_github_accounts_on_members_id"
-  end
 
   create_table "members", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +31,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_190658) do
     t.integer "total_eyes_count", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "github_name"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -68,7 +60,6 @@ ActiveRecord::Schema.define(version: 2021_11_05_190658) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "github_accounts", "members", column: "members_id"
   add_foreign_key "messages", "members", column: "members_id"
   add_foreign_key "messages", "repositories", column: "repositories_id"
 end
