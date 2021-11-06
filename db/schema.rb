@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 2021_11_05_190658) do
     t.bigint "repositories_id", null: false
     t.text "text", null: false
     t.text "url", null: false
-    t.datetime "join_day", null: false
     t.integer "good_count", default: 0, null: false
     t.integer "bad_count", default: 0, null: false
     t.integer "laugh_count", default: 0, null: false
