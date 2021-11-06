@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  get '/member/:user_id', to: 'hellos#show'
+  namespace 'api' do
+    namespace 'v1' do
+      get '/members/:members_id', to: 'members#index'
+    end
+  end
 end
