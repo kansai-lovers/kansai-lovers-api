@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  get '/hello/:user_name', to: 'hellos#show'
+  get '/member/:user_id', to: 'hellos#show'
 end
