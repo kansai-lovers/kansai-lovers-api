@@ -1,7 +1,6 @@
 class Member < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :repositories, dependent: :destroy
-  has_many :chips, dependent: :destroy, foreign_key: 'members_id'
 
   def dev_design
     arr_x = Member.all.pluck(:total_hooray_count)

@@ -18,8 +18,6 @@ end
     member = Member.create!(name: args[:name], role: args[:role], join_date: args[:join_date], url: args[:github_url], avatar_url: args[:avatar_url])
   end
 
-  Chip.create!(members_id: member.id, value:"front end", color:"#DD2C01")
-
   #github_accounts
   github_account = GithubAccount.find_by(members_id: member.id)
   if github_account.nil?
