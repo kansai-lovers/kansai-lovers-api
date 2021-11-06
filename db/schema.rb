@@ -10,19 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_06_190250) do
+ActiveRecord::Schema.define(version: 2021_11_05_190658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "chips", force: :cascade do |t|
-    t.bigint "members_id", null: false
-    t.string "value", null: false
-    t.string "color", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["members_id"], name: "index_chips_on_members_id"
-  end
 
   create_table "github_accounts", force: :cascade do |t|
     t.bigint "members_id", null: false
@@ -77,7 +68,6 @@ ActiveRecord::Schema.define(version: 2021_11_06_190250) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "chips", "members", column: "members_id"
   add_foreign_key "github_accounts", "members", column: "members_id"
   add_foreign_key "messages", "members", column: "members_id"
   add_foreign_key "messages", "repositories", column: "repositories_id"
