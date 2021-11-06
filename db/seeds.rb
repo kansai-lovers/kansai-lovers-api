@@ -10,13 +10,15 @@ end
 
 #members
 [
-  { name: '内藤綜志', role: 'Server Engineer', join_date:'2021.04〜now', status:'ProjectA Join', github_name: "SoshiNaito", github_url: 'https://github.com/SoshiNaito'},
-  { name: '近藤大暉', role: 'Front Engineer', join_date:'2021.04〜now', status:'ProjectA Join', github_name: "hirokikondo86", github_url: 'https://github.com/hirokikondo86'},
+  { name: '内藤綜志', role: 'Server Engineer', join_date:'2021.04〜now', github_name: "SoshiNaito", github_url: 'https://github.com/SoshiNaito', avatar_url: "https://avatars.githubusercontent.com/u/93771634?v=4"},
+  { name: '近藤大暉', role: 'Front Engineer', join_date:'2021.04〜now', github_name: "hirokikondo86", github_url: 'https://github.com/hirokikondo86', avatar_url: "https://avatars.githubusercontent.com/u/93771634?v=4"},
 ].each do |args|
   member = Member.find_by(name: args[:name])
   if member.nil?
-    member = Member.create!(name: args[:name], role: args[:role], join_date: args[:join_date], status: args[:status])
+    member = Member.create!(name: args[:name], role: args[:role], join_date: args[:join_date], url: args[:github_url], avatar_url: args[:avatar_url])
   end
+
+  Chip.create!(members_id: member.id, value:"front end", color:"#DD2C01")
 
   #github_accounts
   github_account = GithubAccount.find_by(members_id: member.id)

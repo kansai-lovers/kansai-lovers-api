@@ -6,7 +6,7 @@ module Api
       end
 
       def show
-        member = Member.find_by(id: params[:members_id])
+        member = Member.where(id: params[:members_id])
         render json: member
       end
 
