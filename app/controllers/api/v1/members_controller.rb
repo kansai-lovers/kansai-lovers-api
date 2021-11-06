@@ -12,8 +12,8 @@ module Api
 
       def calcurate_score
         member = Member.find_by(id: params[:members_id])
-        skillScore = {"design": member.dev_design(),"implementation": member.dev_implementation(), "communication": member.dev_communication()}
-        render json: skillScore
+        skill_score = { "design": member.dev_design, "implementation": member.dev_implementation, "communication": member.dev_communication }
+        render json: skill_score
       end
     end
   end
