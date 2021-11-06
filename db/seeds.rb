@@ -15,13 +15,7 @@ end
 ].each do |args|
   member = Member.find_by(name: args[:name])
   if member.nil?
-    member = Member.create!(name: args[:name], role: args[:role], join_date: args[:join_date], url: args[:github_url], avatar_url: args[:avatar_url])
-  end
-
-  #github_accounts
-  github_account = GithubAccount.find_by(members_id: member.id)
-  if github_account.nil?
-    GithubAccount.create!(members_id: member.id, name: args[:github_name], url: args[:github_url])
+    member = Member.create!(name: args[:name], role: args[:role], join_date: args[:join_date], url: args[:github_url], avatar_url: args[:avatar_url], github_name: "SoshiNaito")
   end
 end
 
